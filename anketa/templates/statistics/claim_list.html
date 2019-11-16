@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Claim List</h1>
+
+    {% if claim_list %}
+    <ul>
+
+      {% for claim in claim_list %}
+      <li>
+        <a href="{{ claim.get_absolute_url }}">{{ claim.title }}</a> ({{ claim.witness }})
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>There are no claims in the reestry.</p>
+    {% endif %}
+{% endblock %}

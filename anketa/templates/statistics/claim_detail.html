@@ -1,0 +1,71 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  
+
+  {%if claim.questions %}
+  <p><strong>Question:</strong><a href=""> {{ claim.questions }}</a></p>
+  {% endif %}
+  {%if claim.witness %}
+  <p><strong>Witness:</strong><a href=""> {{ claim.witness }}</a></p>
+  {% endif %}
+  {%if claim.title %}
+    <p><strong>Title:</strong><a href=""> {{ claim.title }}</a></p>
+  {% endif %}
+
+  {%if claim.char_1 %}
+    <p>{{ claim.char_1 }}</p>
+  {% endif %}
+  {%if claim.char_2 %}
+    <p>{{ claim.char_2 }}</p>
+  {% endif %}
+  {%if claim.boolean_1 %}
+    <p>{{ claim.boolean_1 }}</p>
+  {% endif %}
+  {%if claim.boolean_2 %}
+    <p>{{ claim.boolean_2 }}</p>
+  {% endif %}
+  {%if claim.boolean_3 %}
+    <p>{{ claim.boolean_3 }}</p>
+  {% endif %}
+  {%if claim.boolean_4 %}
+    <p>{{ claim.boolean_4 }}</p>
+  {% endif %}
+  {%if claim.boolean_5 %}
+    <p>{{ claim.boolean_5 }}</p>
+  {% endif %}
+  {%if claim.boolean_6 %}
+    <p>{{ claim.boolean_6 }}</p>
+  {% endif %}
+  {%if claim.boolean_7 %}
+    <p>{{ claim.boolean_7 }}</p>
+  {% endif %}
+  {%if claim.integer_1 %}
+    <p>{{ claim.integer_1 }}</p>
+  {% endif %}
+  {%if claim.integer_2 %}
+    <p>{{ claim.integer_2 }}</p>
+  {% endif %}
+  {%if claim.image_1 %}
+    <p>{{ claim.image_1 }}</p>
+  {% endif %}
+  {%if claim.image_2 %}
+    <p>{{ claim.image_2 }}</p>
+  {% endif %}
+  {%if claim.file_1 %}
+    <p>{{ claim.file_1 }}</p>
+  {% endif %}
+
+
+  <div style="margin-left:20px;margin-top:20px">
+    <h4>Analogs</h4>
+
+    {% for copy in claim.claiminstance_set.all %}
+    <hr>
+    <p class="{%if copy.status == 'a' %}text-success{% elif copy.status == 'd' %}text-danger{% else %}text-warning{% endif %}">{{ copy.get_status_display }}</p>
+    {%if copy.status != 'a' %}<p><strong>Due to be returned:</strong> {{copy.due_back}}</p>{% endif %}
+    <p><strong>Imprint:</strong> {{copy.imprint}}</p>
+    <p class="text-muted"><strong>Id:</strong> {{copy.id}}</p>
+    {% endfor %}
+  </div>
+{% endblock %}

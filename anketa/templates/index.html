@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>World Protection Portal</h1>
+
+  <p>The <em>World Protection Portal</em> is designed to protect the environment, animals and human rights.
+    The <em>World Protection Portal</em> performs the functions of monitoring, submitting applications and propaganda</p>
+
+<h2>Look, how many ills!</h2>
+
+  <p>Global statistics:</p>
+
+    <strong>Claims:</strong> <h2>{{ num_claim }}</h2>
+    <strong>Witness:</strong> <h2>{{ num_witness }}</h2>
+    <strong>So many things started - </strong> <h2>{{ num_status_init }}</h2>
+    <h2>{{ num_status_sent }}</h2> <strong>- applications sent for consideration</strong>
+    <h2>{{ num_status_edit }}</h2> <strong>statements are being edited now.</strong>
+    <strong>Authors:</strong> <h2>{{ num_status_prep }}</h2>
+    <strong>:</strong> <h2>{{ num_status_deliv }}</h2>
+
+
+{% endblock %}
