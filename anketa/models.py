@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 import uuid
+from datetime import date
+from django.contrib.auth.models import User
 
 
 class Claim(models.Model):
@@ -40,6 +42,13 @@ class Status(models.Model):
         ('d', 'delivered'),
     )
     status = models.CharField(max_length=1, choices=LOAN_STATUS, blank=True, default='i')
+    borrower = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+
+    @property
+    def is_overdue(self):
+        if self.status == 'i' or self.status == 's' or self.status == 'e':
+            return True
+        return False
 
     class Meta:
         ordering = ['status']
@@ -65,3 +74,14 @@ class Witness(models.Model):
 
     class Meta:
         ordering = ['second_name']
+
+
+class Post(models.Model):
+    title = models.TextField()
+    cover = models.ImageField(upload_to='images/')
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('index')

@@ -28,6 +28,9 @@ urlpatterns += [
     path('anketa/', include('anketa.urls')),
 ]
 
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+]
 
 urlpatterns += [
     path('', RedirectView.as_view(url='/anketa/', permanent=True)),

@@ -38,6 +38,15 @@
 
               <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto mt-auto mb-auto">
+                    <button type="button" href="{% url 'add_post' %}" class="btn btn-warning">File Analysis</button>
+
+                  {% if user.is_authenticated %}
+                      <li class="nav-item ml-4 mt-0 mb-0"><a class="nav-link text-dark font-weight-bold">User: {{ user.get_username }} </a></li>
+                      <li class="nav-item ml-4 mt-0 mb-0"><a href="{% url 'logout'%}?next={{request.path}}" class="nav-link text-dark font-weight-bold">Logout</a></li>
+                    {% else %}
+                      <li class="nav-item ml-4 mt-0 mb-0"><a href="{% url 'login'%}?next={{request.path}}" class="nav-link text-dark font-weight-bold">Login</a></li>
+                    {% endif %}
+
                   <li class="nav-item ml-4 mt-0 mb-0">
                     <div class="row">
                       <a href="https://ru.wikipedia.org/wiki/" style="color: black;" class="nav-link text-dark font-weight-bold">
@@ -112,10 +121,10 @@
 
             <ul class="list-unstyled CTAs">
                 <li>
-                    <a href="https://github.com/blog-kopilka/bootstrap4-sidebar" class="download">Support project</a>
+                    <a href="{% url 'index' %}" class="download">Support project</a>
                 </li>
                 <li>
-                    <a class="article">Назад в статью</a>
+                    <a href="{% url 'index' %}"  class="article">Back in main</a>
                 </li>
             </ul>
         </nav>
@@ -123,7 +132,28 @@
         {% endblock %}
       </div>
       <div class="col-sm-11">
-      {% block content %}{% endblock %}
+          {% block content %}{% endblock %}
+          {% block analogs %}{% endblock %}
+          {% block post %}{% endblock %}
+          {% block upload %}{% endblock %}
+
+          {% block pagination %}
+            {% if is_paginated %}
+                <div class="pagination">
+                    <span class="page-links">
+                        {% if page_obj.has_previous %}
+                            <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                        {% endif %}
+                        <span class="page-current">
+                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                        </span>
+                        {% if page_obj.has_next %}
+                            <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                        {% endif %}
+                    </span>
+                </div>
+            {% endif %}
+          {% endblock %}
       </div>
     </div>
 
