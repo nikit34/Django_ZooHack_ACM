@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.shortcuts import render
 import uuid
 from datetime import date
 from django.contrib.auth.models import User
@@ -52,9 +53,13 @@ class Status(models.Model):
 
     class Meta:
         ordering = ['status']
+        permissions = (("can_mark_returned", "Set status as returned"),)
 
     def __str__(self):
         return '%s (%s)' % (self.id, self.claim.title)
+
+    def get_absolute_url(self):
+        return reverse('status-detail', args=[str(self.id)])
 
 
 class Witness(models.Model):
@@ -62,18 +67,18 @@ class Witness(models.Model):
     second_name = models.CharField(max_length=20, help_text='Enter second name')
     telephon = models.CharField(max_length=10, help_text='Enter telephones number')
     email = models.CharField(max_length=20, help_text='Enter email adderess')
-    second_name = models.CharField(max_length=20)
     date_order = models.DateField(null=True, blank=True)
     date_incident = models.DateTimeField('Incident', null=True, blank=True)
+
+    class Meta:
+        ordering = ['second_name']
 
     def __str__(self):
         return '%s, %s' % (self.second_name, self.date_order)
 
     def get_absolute_url(self):
-        return reverse('witness-detail', args=[str(self.id)])
+        return reverse('witness-detail', args=[str(self.second_name)])
 
-    class Meta:
-        ordering = ['second_name']
 
 
 class Post(models.Model):
@@ -85,3 +90,5 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('index')
+
+

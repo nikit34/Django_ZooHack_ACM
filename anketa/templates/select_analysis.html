@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+{% load widget_tweaks %}
+{% block post %}
+
+  <div class="container">
+      <ul class="list-unstyled CTAs">
+          <a class="download"
+            style="background-color: rgba(0, 0, 0, 0.5);height: 40px; width: 770px;text-decoration: none;margin-left:auto;margin-right:auto;">
+            <h2 style="color:rgb(255, 255, 255);text-align:center; margin-top: auto;">Select file analysis method</h2>
+          </a></ul>
+
+<div class="row">
+    <div class="col"></div>
+  <div class="col">
+      <a class="btn btn-outline-dark font-weight-bold" href="{% url 'add_post' %}" style="background-color: rgba(255, 255, 0, 0.5);height: 40px; width: 200px;text-decoration: none;margin-left:0;margin-right:auto;"><i class="fas fa-crosshairs mr-1"></i></i> Detect tree</a></div>
+      <div class="col"></div>
+      <div class="col">
+        <a class="btn btn-outline-dark font-weight-bold" href="{% url 'add_post' %}" style="background-color: rgba(255, 255, 0, 0.5);height: 40px; width: 200px;text-decoration: none;margin-left:auto;margin-right:0;"><i class="fas fa-calculator mr-1"></i></i> Parse table</a></div>
+        <div class="col"></div>
+  </div>
+</div>
+
+{% endblock %}

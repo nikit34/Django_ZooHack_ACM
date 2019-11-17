@@ -1,19 +1,23 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-    <h1>Claim List</h1>
+<ul class="list-unstyled CTAs">
+  <a class="download"
+    style="background-color: rgba(0, 0, 0, 0.5);height: 40px; width: 770px;text-decoration: none;margin-left:auto;margin-right:auto;">
+    <h2 style="color:rgb(255, 255, 255);text-align:center; margin-top: auto;">Claim List</h2>
+  </a></ul>
 
-    {% if claim_list %}
-    <ul>
+{% if claim_list %}
+<ul class="list-group">
 
-      {% for claim in claim_list %}
-      <li>
-        <a href="{{ claim.get_absolute_url }}">{{ claim.title }}</a> ({{ claim.witness }})
-      </li>
-      {% endfor %}
+  {% for claim in claim_list %}
+  <li class="list-group-item">
+    <a href="{{ claim.get_absolute_url }}">{{ claim.title }}</a> ({{ claim.witness }})
+  </li>
+  {% endfor %}
 
-    </ul>
-    {% else %}
-      <p>There are no claims in the reestry.</p>
-    {% endif %}
+</ul>
+{% else %}
+<p>There are no claims in the reestry.</p>
+{% endif %}
 {% endblock %}

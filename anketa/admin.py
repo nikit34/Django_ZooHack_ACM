@@ -1,6 +1,8 @@
 from django.contrib import admin
-from .models import Witness, Claim, Status
+from .models import Witness, Claim, Status, Post
 
+
+admin.site.register(Post)
 
 @admin.register(Witness)
 class WitnessAdmin(admin.ModelAdmin):

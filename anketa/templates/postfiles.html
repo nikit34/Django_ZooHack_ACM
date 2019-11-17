@@ -4,14 +4,14 @@
 
 <h1>Onload for solver</h1>
 <form method="post" enctype="multipart/form-data">
-<div class="container">
+  <div class="container">
     <div class="form-group">
-  {% csrf_token %}
-  {% render_field field class="form-control" %}
-  {{ form.as_p }}
-  <button type="submit" class="btn btn-secondary" onclick="alert('Success onload!')">Onload</button>
-</div>
-</div>
+      {% csrf_token %}
+      {% render_field field class="form-control" %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-secondary" onclick="alert('Success onload!')"><a href="{% url 'uploadfiles' %}" >Onload</a></button>
+    </div>
+  </div>
 </form>
 
 {% endblock %}

@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from django.conf.urls import url
+from django.conf.urls import url, include
 
 
 urlpatterns = [
@@ -10,12 +10,21 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    url(r'^myclaim/$', views.LoanedStatusByUserListView.as_view(), name='my_claim'),
+    url(r'^myclaim/(?P<pk>\d+)$', views.LoanedStatusByUserListView.as_view(template_name='statistics/status_list_borrowed_user.html'), name='status-detail'),
+]
+
+urlpatterns += [
+    url(r'^claim/(?P<pk>[-\w]+)/renew/$', views.renew_claim, name='renew-claim'),
+]
+
+urlpatterns += [
+    url('map/', views.map, name='map'),
 ]
 
 urlpatterns += [
     path('upload/', views.UploadFiles.as_view(), name='uploadfiles'),
     path('post/', views.CreatePost.as_view(), name='add_post'),
+    path('select/', views.select, name='select'),
 ]
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns

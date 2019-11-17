@@ -1,27 +1,29 @@
 {% extends "base_generic.html" %}
 
 {% block upload %}
-<p class="text-center"><h3>Uploading files</h3></p>
+<p class="text-center">
+  <h3>Uploading files</h3>
+</p>
 <hr>
 <br>
 <div class="container">
   {% for post in object_list %}
   <div class="row">
     <div class="col">
-        <p class="text-center">
-    <h5>{{ post.title }}</h5>
-    </p>
-    <br>
-    <img src="{{ post.cover.url}}" style="margin-left:30%; height: 400px; width: 600px;" alt="{{ post.title }}">
-    <hr><br>
-  </div>
+      <p class="text-center">
+        <h5>{{ post.title }}</h5>
+      </p>
+      <br>
+      <img src="{{ post.cover.url}}" style="margin-left:30%; height: 400px; width: 600px;" alt="{{ post.title }}">
+      <hr><br>
+    </div>
   </div>
   {% endfor %}
   <br>
   <div class="container">
-      <a class="btn btn btn-secondary" href="{% url 'index' %}">
-        <i class="fas fa-cloud-download-alt mr-1"></i> Back
-      </a>
+    <a class="btn btn btn-secondary" href="{% url 'index' %}">
+      <i class="fas fa-cloud-download-alt mr-1"></i> Back
+    </a>
   </div>
 </div>
 

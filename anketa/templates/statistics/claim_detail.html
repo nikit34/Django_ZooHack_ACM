@@ -2,63 +2,87 @@
 
 {% block content %}
 
-
-  {%if claim.questions %}
-  <p><strong>Question:</strong><a href=""> {{ claim.questions }}</a></p>
+<ul class="list-group">
+  {% if claim.questions %}
+  <hr>
+  <li class="list-group-item"><strong>Question:</strong> {{ claim.questions }}</li>
   {% endif %}
   {%if claim.witness %}
-  <p><strong>Witness:</strong><a href=""> {{ claim.witness }}</a></p>
+  <hr>
+  <li class="list-group-item"><strong>Witness:</strong> {{ claim.witness }}</li>
   {% endif %}
   {%if claim.title %}
-    <p><strong>Title:</strong><a href=""> {{ claim.title }}</a></p>
+  <hr>
+  <li class="list-group-item"><strong>Title:</strong> {{ claim.title }}</li>
   {% endif %}
+  <hr>
+</ul>
+<div class="container">
+  <ul class="list-unstyled CTAs">
+    <a class="download"
+      style="background-color: rgba(0, 0, 0, 0.5);height: 40px; width: 770px;text-decoration: none;margin-left:auto;margin-right:auto;">
+      <h2 style="color:rgb(255, 255, 255);text-align:center; margin-top: auto;">Other information</h2>
+    </a></ul>
 
-  {%if claim.char_1 %}
-    <p>{{ claim.char_1 }}</p>
-  {% endif %}
-  {%if claim.char_2 %}
-    <p>{{ claim.char_2 }}</p>
-  {% endif %}
-  {%if claim.boolean_1 %}
-    <p>{{ claim.boolean_1 }}</p>
-  {% endif %}
-  {%if claim.boolean_2 %}
-    <p>{{ claim.boolean_2 }}</p>
-  {% endif %}
-  {%if claim.boolean_3 %}
-    <p>{{ claim.boolean_3 }}</p>
-  {% endif %}
-  {%if claim.boolean_4 %}
-    <p>{{ claim.boolean_4 }}</p>
-  {% endif %}
-  {%if claim.boolean_5 %}
-    <p>{{ claim.boolean_5 }}</p>
-  {% endif %}
-  {%if claim.boolean_6 %}
-    <p>{{ claim.boolean_6 }}</p>
-  {% endif %}
-  {%if claim.boolean_7 %}
-    <p>{{ claim.boolean_7 }}</p>
-  {% endif %}
-  {%if claim.integer_1 %}
-    <p>{{ claim.integer_1 }}</p>
-  {% endif %}
-  {%if claim.integer_2 %}
-    <p>{{ claim.integer_2 }}</p>
-  {% endif %}
-  {%if claim.image_1 %}
-    <p>{{ claim.image_1 }}</p>
-  {% endif %}
-  {%if claim.image_2 %}
-    <p>{{ claim.image_2 }}</p>
-  {% endif %}
-  {%if claim.file_1 %}
-    <p>{{ claim.file_1 }}</p>
-  {% endif %}
+  <ul class="list-group">
+    {%if claim.char_1 %}
+    <li class="list-group-item">{{ claim.char_1 }}</li>
+    {% endif %}
+    {%if claim.char_2 %}
+    <li class="list-group-item">{{ claim.char_2 }}</li>
+    {% endif %}
+    {%if claim.boolean_1 %}
+    <li class="list-group-item">{{ claim.boolean_1 }}</li>
+    {% endif %}
+    {%if claim.boolean_2 %}
+    <li class="list-group-item">{{ claim.boolean_2 }}</li>
+    {% endif %}
+    {%if claim.boolean_3 %}
+    <li class="list-group-item">{{ claim.boolean_3 }}</li>
+    {% endif %}
+    {%if claim.boolean_4 %}
+    <li class="list-group-item">{{ claim.boolean_4 }}</li>
+    {% endif %}
+    {%if claim.boolean_5 %}
+    <li class="list-group-item">{{ claim.boolean_5 }}</li>
+    {% endif %}
+    {%if claim.boolean_6 %}
+    <li class="list-group-item">{{ claim.boolean_6 }}</li>
+    {% endif %}
+    {%if claim.boolean_7 %}
+    <li class="list-group-item">{{ claim.boolean_7 }}</li>
+    {% endif %}
+    {%if claim.integer_1 %}
+    <li class="list-group-item">{{ claim.integer_1 }}</li>
+    {% endif %}
+    {%if claim.integer_2 %}
+    <li class="list-group-item">{{ claim.integer_2 }}</li>
+    {% endif %}
+    {%if claim.image_1 %}
+    <li class="list-group-item">{{ claim.image_1 }}</li>
+    {% endif %}
+    {%if claim.image_2 %}
+    <li class="list-group-item">{{ claim.image_2 }}</li>
+    {% endif %}
+    {%if claim.file_1 %}
+    <li class="list-group-item">{{ claim.file_1 }}</li>
+    {% endif %}
+  </ul>
+</div>
 
 
-  <div style="margin-left:20px;margin-top:20px">
-    <h4>Analogs</h4>
-    
-  </div>
+<div style="margin-left:20px; margin-top:20px">
+  <ul class="list-unstyled CTAs">
+    <div class="row">
+      <a href="{% url 'status-detail' claim.pk %}" class="download"
+        style="background-color: rgba(255, 255, 0, 0.5);height: 40px; width: 200px;text-decoration: none;margin-left:auto;margin-right:auto;">
+        <h3 style="color:rgb(255, 255, 255);text-align:center; margin-top: auto;">Back</h3>
+      </a>
+      <a href="{% url 'status-detail' claim.pk %}" class="download"
+        style="background-color: rgba(255, 255, 0, 0.5);height: 40px; width: 200px;text-decoration: none;margin-left:auto;margin-right:auto;">
+        <h3 style="color:rgb(255, 255, 255);text-align:center; margin-top: auto;">Status detail</h3>
+      </a>
+    </div>
+  </ul>
+</div>
 {% endblock %}

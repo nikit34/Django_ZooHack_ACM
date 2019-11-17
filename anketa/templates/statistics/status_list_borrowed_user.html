@@ -1,17 +1,25 @@
 {% extends "base_generic.html" %}
 
 {% block analogs %}
-    <h1>Borrowed claims</h1>
+<ul class="list-unstyled CTAs">
+  <a class="download"
+    style="background-color: rgba(0, 0, 0, 0.5);height: 40px; width: 770px;text-decoration: none;margin-left:auto;margin-right:auto;">
+    <h2 style="color:rgb(255, 255, 255);text-align:center; margin-top: auto;">Borrowed claims</h2>
+  </a></ul>
 
-    {% if status_list %}
-      {% for stat in status_list %}
-      <div class="list-group">
-      <li class="list-group-item {% if stat.is_overdue %}text-danger{% endif %}">
-        <a href="{% url 'status-detail' stat.claim.pk %}">{{ stat.claim.title }}</a> ({{ stat.status }})
-      </li>
-    </div>
-      {% endfor %}
-    {% else %}
-      <p>There are no status borrowed.</p>
-    {% endif %}
-    {% endblock %}
+
+{% if status_list %}
+{% for stat in status_list %}
+<div class="list-group">
+  <li class="list-group-item {% if stat.is_overdue %}list-group-item-danger{% endif %}">
+    <a href="{% url 'claim-detail' stat.claim.pk %}">{{ stat.claim.title }}</a> |
+    {{ stat.claim.witness.date_incident }} | {{ stat.claim.witness.date_order }} | {{ stat.borrower }} (status:
+    {{ stat.status }})
+  </li>
+</div>
+{% endfor %}
+{% else %}
+<p>There are no status borrowed.</p>
+{% endif %}
+
+{% endblock %}

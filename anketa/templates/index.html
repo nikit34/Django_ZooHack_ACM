@@ -1,22 +1,30 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>World Protection Portal</h1>
+<div class="container">
+  <h1 style="text-align:center; margin-top: auto;">World Protection Portal</h1>
 
   <p>The <em>World Protection Portal</em> is designed to protect the environment, animals and human rights.
-    The <em>World Protection Portal</em> performs the functions of monitoring, submitting applications and propaganda</p>
+    The <em>World Protection Portal</em> performs the functions of monitoring, submitting applications and propaganda
+  </p>
 
-<h2>Look, how many ills!</h2>
-
-  <p>Global statistics:</p>
-
-    <strong>Claims:</strong> <h2>{{ num_claim }}</h2>
-    <strong>Witness:</strong> <h2>{{ num_witness }}</h2>
-    <strong>So many things started - </strong> <h2>{{ num_status_init }}</h2>
-    <h2>{{ num_status_sent }}</h2> <strong>- applications sent for consideration</strong>
-    <h2>{{ num_status_edit }}</h2> <strong>statements are being edited now.</strong>
-    <strong>Authors:</strong> <h2>{{ num_status_prep }}</h2>
-    <strong>:</strong> <h2>{{ num_status_deliv }}</h2>
-
-    <p>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
+  <h2 style="text-align:center; margin-top: auto;">Look, how many ills!</h2>
+  <br>
+  <ul class="list-unstyled CTAs">
+    <a class="download"
+      style="background-color: rgba(0, 0, 0, 0.5);height: 40px; width: 770px;text-decoration: none;margin-left:auto;margin-right:auto;">
+      <h2 style="color:rgb(255, 255, 255);text-align:center; margin-top: auto;">Global statistics</h2>
+    </a></ul>
+  <ul class="list-group">
+    <li class="list-group-item"><strong>Claims:</strong> {{ num_claim }}</li>
+    <li class="list-group-item"><strong>Witness:</strong> {{ num_witness }}</li>
+    <li class="list-group-item"><strong>So many things started:</strong> {{ num_status_init }}</li>
+    <li class="list-group-item"><strong>Applications sent for consideration:</strong> {{ num_status_sent }}</li>
+    <li class="list-group-item"><strong>Statements are being edited now:</strong> {{ num_status_edit }}</li>
+    <li class="list-group-item"><strong>Authors:</strong> {{ num_status_prep }}</li>
+    <li class="list-group-item"><strong>Delivered:</strong> {{ num_status_deliv }}</li>
+  </ul>
+  <hr>
+  <p>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
+</div>
 {% endblock %}

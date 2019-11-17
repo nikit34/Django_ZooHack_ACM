@@ -1,189 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
   {% block title %}<title>(WPP) Claim Reestry</title>{% endblock %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+    integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   <!-- Scrollbar Custom CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
   <!-- Font Awesome JS -->
-  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+    integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+    crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+    integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+    crossorigin="anonymous"></script>
+  {% block maphead %}{% endblock %}
 
 </head>
 
 <body id="body">
-    <footer>
-      <div class="row">
-        <nav class="js-navbar-scroll navbar fixed-top navbar-expand-lg navbar-dark navbar-bg-onscroll--fade" id="navbar">
-          <div class="container">
-              <ul class="navbar-nav mr-auto mt-auto mb-auto">
-                  <li class="nav-item mr-lg-5 mt-0 mb-0">
-                    <a class="navbar-brand" href="{% url 'index' %}">
-                      <div class="row">
-                        <img src="{% static 'img/logo.png' %}" alt="Gov" style="width: 30px; height: 30px;">
-                        <a class="nav-link text-dark font-weight-bold" href="{% url 'index' %}"><h4 style="color:rgb(255, 255, 255);">World Protection Portal</h4>
-                        </a>
-                      </div>
-                    </a>
-                </li>
-              </ul>
+  <footer>
+    <div class="row">
+      <nav class="js-navbar-scroll navbar fixed-top navbar-expand-lg navbar-dark navbar-bg-onscroll--fade" id="navbar">
+        <div class="container">
+          <ul class="navbar-nav mr-auto mt-auto mb-auto">
+            <li class="nav-item mr-lg-5 mt-0 mb-0">
+              <a class="navbar-brand" href="{% url 'index' %}">
+                <div class="row">
+                  <img src="{% static 'img/logo.png' %}" alt="Gov" style="width: 30px; height: 30px;">
+                  <a class="nav-link text-dark font-weight-bold" href="{% url 'index' %}">
+                    <h4 style="color:rgb(255, 255, 255);">World Protection Portal</h4>
+                  </a>
+                </div>
+              </a>
+            </li>
+          </ul>
 
 
-              <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ml-auto mt-auto mb-auto">
-                    <button type="button" href="{% url 'add_post' %}" class="btn btn-warning">File Analysis</button>
-
-                  {% if user.is_authenticated %}
-                      <li class="nav-item ml-4 mt-0 mb-0"><a class="nav-link text-dark font-weight-bold">User: {{ user.get_username }} </a></li>
-                      <li class="nav-item ml-4 mt-0 mb-0"><a href="{% url 'logout'%}?next={{request.path}}" class="nav-link text-dark font-weight-bold">Logout</a></li>
-                    {% else %}
-                      <li class="nav-item ml-4 mt-0 mb-0"><a href="{% url 'login'%}?next={{request.path}}" class="nav-link text-dark font-weight-bold">Login</a></li>
-                    {% endif %}
-
-                  <li class="nav-item ml-4 mt-0 mb-0">
-                    <div class="row">
-                      <a href="https://ru.wikipedia.org/wiki/" style="color: black;" class="nav-link text-dark font-weight-bold">
-                      <i class="fas fa-cubes u-font-size-10 mr-0" style="color:rgb(255, 255, 255);"></i> Support
-                      </a>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-
-            </div>
-          </nav>
-      </div>
-    </footer>
-
-      <br><br><br>
-
-        <div class="row">
-          <div class="col-sm-1">
-                  <button type="button" id="sidebarCollapse" class="btn btn-light" style="width: 100%; height: 100%;">
-                  <i class="fas fa-align-left"></i>
-                  <span>Menu</span>
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto mt-auto mb-auto">
+              <button type="button" class="btn btn-warning"><a class="btn btn-outline-dark font-weight-bold" href="{% url 'select' %}"><i class="fas fa-cloud-download-alt mr-1"></i> File Analysis</a>
               </button>
-          {% block sidebar %}
-    <div class="wrapper">
+
+              {% if user.is_authenticated %}
+              <li class="nav-item ml-4 mt-0 mb-0"><a class="nav-link text-dark font-weight-bold">User:
+                  {{ user.get_username }} </a></li>
+              <li class="nav-item ml-4 mt-0 mb-0"><a href="{% url 'logout'%}?next={{request.path}}"
+                  class="nav-link text-dark font-weight-bold">Logout</a></li>
+              {% else %}
+              <li class="nav-item ml-4 mt-0 mb-0"><a href="{% url 'login'%}?next={{request.path}}"
+                  class="nav-link text-dark font-weight-bold">Login</a></li>
+              {% endif %}
+
+              <li class="nav-item ml-4 mt-0 mb-0">
+                <div class="row">
+                  <a href="https://ru.wikipedia.org/wiki/" style="color: black;"
+                    class="nav-link text-dark font-weight-bold">
+                    <i class="fas fa-cubes u-font-size-10 mr-0" style="color:rgb(255, 255, 255);"></i> Support
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </nav>
+    </div>
+  </footer>
+
+  <br><br><br>
+
+  <div class="row">
+    <div class="col-sm-1">
+      <button type="button" id="sidebarCollapse" class="btn btn-light" style="width: 100%; height: 100%;">
+        <i class="fas fa-align-left"></i>
+        <span>Menu</span>
+      </button>
+      {% block sidebar %}
+      <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
-            <div id="dismiss">
-                <i class="fas fa-arrow-left"></i>
-            </div>
+          <div id="dismiss">
+            <i class="fas fa-arrow-left"></i>
+          </div>
 
-            <div class="sidebar-header">
-                <h5>WPP</h5>
-            </div>
+          <div class="sidebar-header">
+            <h5>WPP</h5>
+          </div>
 
-            <ul class="list-unstyled components">
-                <p></p>
-                <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"><srung>></srung> Motivations</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="{% url 'index' %}">Part 1</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'index' %}">Part 2</a>
-                        </li>
-                    </ul>
+          <ul class="list-unstyled components">
+            <p></p>
+            <li class="active">
+              <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
+                <srung>></srung> Motivations
+              </a>
+              <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li>
+                  <a href="{% url 'index' %}">Part 1</a>
                 </li>
                 <li>
-                    <a href="#">About</a>
+                  <a href="{% url 'index' %}">Part 2</a>
                 </li>
-                <li class="active">
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"><srung>></srung> Trouble</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="{% url 'claims' %}">Trouble is HERE</a>
-                        </li>
-                        <li>
-                            <a href="#">Trouble on a world MAP</a>
-                        </li>
-                    </ul>
+              </ul>
+            </li>
+            <li>
+              <a href="#">About</a>
+            </li>
+            <li class="active">
+              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
+                <srung>></srung> Trouble
+              </a>
+              <ul class="collapse list-unstyled" id="pageSubmenu">
+                <li>
+                  <a href="{% url 'claims' %}">Trouble is HERE</a>
                 </li>
                 <li>
-                    <a href="#">Help WPP - help world</a>
+                  <a href="{% url 'map' %}">Trouble on a world MAP</a>
                 </li>
-                {% if user.is_superuser %}
-                <li>
-                    <a href="{% url 'admin:index' %}">for ADMIN</a>
-                </li>
-                {% endif %}
-            </ul>
+              </ul>
+            </li>
+            <li>
+              <a href="#">Help WPP - help world</a>
+            </li>
+            {% if user.is_superuser %}
+            <li>
+              <a href="{% url 'admin:index' %}">for ADMIN</a>
+            </li>
+            {% endif %}
+          </ul>
 
-            <ul class="list-unstyled CTAs">
-                <li>
-                    <a href="{% url 'index' %}" class="download">Support project</a>
-                </li>
-                <li>
-                    <a href="{% url 'index' %}"  class="article">Back in main</a>
-                </li>
-            </ul>
+          <ul class="list-unstyled CTAs">
+            <li>
+              <a href="{% url 'index' %}" class="download">Support project</a>
+            </li>
+            <li>
+              <a href="{% url 'index' %}" class="article">Back in main</a>
+            </li>
+          </ul>
         </nav>
       </div>
-        {% endblock %}
-      </div>
-      <div class="col-sm-11">
-          {% block content %}{% endblock %}
-          {% block analogs %}{% endblock %}
-          {% block post %}{% endblock %}
-          {% block upload %}{% endblock %}
-
-          {% block pagination %}
-            {% if is_paginated %}
-                <div class="pagination">
-                    <span class="page-links">
-                        {% if page_obj.has_previous %}
-                            <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
-                        {% endif %}
-                        <span class="page-current">
-                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                        </span>
-                        {% if page_obj.has_next %}
-                            <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
-                        {% endif %}
-                    </span>
-                </div>
-            {% endif %}
-          {% endblock %}
-      </div>
+      {% endblock %}
     </div>
+    <div class="col-sm-11">
+      <br>
+      {% block content %}{% endblock %}
+      {% block analogs %}{% endblock %}
+      {% block post %}{% endblock %}
+      {% block upload %}{% endblock %}
+      <div class="container">
+        <div style="height:530px; width: 100%;">
+          {% block map %}{% endblock %}</div>
+      </div>
+
+
+      {% block pagination %}
+      {% if is_paginated %}
+      <br>
+      <ul class="pagination" style="margin-left:45%;margin-right:auto;text-align:center;">
+        <div class="row">
+          {% if page_obj.has_previous %}
+          <li class="page-item"><a class="page-link"
+              href="{{ request.path }}?page={{ page_obj.previous_page_number }}">Previous</a></li>
+          {% endif %}
+
+          <h4 style="color:rgb(0, 0, 0);text-align:center; margin-left:auto;margin-top:auto;">
+            <strong>&ensp;{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}&ensp;</strong></h4>
+
+
+          {% if page_obj.has_next %}
+          <li class="page-item"><a class="page-link"
+              href="{{ request.path }}?page={{ page_obj.next_page_number }}">Next</a></li>
+          {% endif %}
+        </div>
+
+      </ul>
+      {% endif %}
+      {% endblock %}
+    </div>
+  </div>
 
 
 
 
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+    integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+    integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+    crossorigin="anonymous"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
   <script>
-  $(document).ready(function () {
+    $(document).ready(function () {
       $("#sidebar").mCustomScrollbar({
-          theme: "minimal"
+        theme: "minimal"
       });
 
       $('#dismiss, .overlay').on('click', function () {
-          $('#sidebar').removeClass('active');
-          $('.overlay').removeClass('active');
+        $('#sidebar').removeClass('active');
+        $('.overlay').removeClass('active');
       });
 
       $('#sidebarCollapse').on('click', function () {
-          $('#sidebar').addClass('active');
-          $('.overlay').addClass('active');
-          $('.collapse.in').toggleClass('in');
-          $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        $('#sidebar').addClass('active');
+        $('.overlay').addClass('active');
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
       });
-  });
+    });
   </script>
 
 </body>
+
 </html>
